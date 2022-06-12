@@ -1,16 +1,23 @@
+//import componet that export as default
+//import Feedback from "./Feedback";
+
+//#region DATA #
+import textFeedback from "../data/titleFeedback.json"
+//#endregion #
+
+//#region COMPONETS #
+//import componet as a component
+import { Feedback } from "./Feedback";
+import { Statistics } from "./Statistics";
+
+//#endregion #
+
+
 export const App = () => {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
+    <div>
+      <Feedback title="Please leave feedback" textFeedback={textFeedback} />
+      <Statistics title="Statistics" textFeedback={textFeedback}/>
     </div>
   );
 };
