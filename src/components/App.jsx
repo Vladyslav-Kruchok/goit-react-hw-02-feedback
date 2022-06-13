@@ -16,6 +16,7 @@ import { Statistics } from "./Statistics";
 export const App = () => {
   return (
     <div>
+      TEST TEXT NEED TO DEL
       <Feedback title="Please leave feedback" textFeedback={textFeedback} />
       <Statistics title="Statistics" textFeedback={textFeedback}/>
     </div>
