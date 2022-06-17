@@ -7,7 +7,8 @@ export class FeedbackOptions extends React.Component {
         stepGood: 1,
         stepNeutral: 1,
         stepBad: 1
-    }
+    };
+    extFunc = this.props.options;
     render() {
         return (
             <ul className={styles.box}>
@@ -16,7 +17,7 @@ export class FeedbackOptions extends React.Component {
                         className={styles.btn}
                         type="button"
                         onClick={() => {
-                            this.props.options.good(this.state.stepGood);
+                            this.extFunc.good(this.state.stepGood);
                             }}
                     >good</button>
                 </li>
@@ -25,7 +26,7 @@ export class FeedbackOptions extends React.Component {
                         className={styles.btn}
                         type="button"
                         onClick={() => {
-                            this.props.options.neutral(this.state.stepNeutral);
+                            this.extFunc.neutral(this.state.stepNeutral);
                             }}
                     >neutral</button>
                 </li>
@@ -34,7 +35,7 @@ export class FeedbackOptions extends React.Component {
                         className={styles.btn}
                         type="button"
                         onClick={() => {
-                            this.props.options.bad(this.state.stepBad);
+                            this.extFunc.bad(this.state.stepBad);
                         }}
                     >bad</button>
                 </li>
@@ -44,11 +45,11 @@ export class FeedbackOptions extends React.Component {
 };
 
 FeedbackOptions.protoType = {
-    textFeedback: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        feedback: PropTypes.string.isRequired
+    options: PropTypes.objectOf(PropTypes.shape({
+        good: PropTypes.func.isRequired,
+        neutral: PropTypes.func.isRequired,
+        bad: PropTypes.func.isRequired
     })),
-    title: PropTypes.string.isRequired
 };
 //export as a default
 //export default Feedback;
