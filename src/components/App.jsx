@@ -22,20 +22,11 @@ export class App extends React.Component {
   };
   step = 1;
   //#region STATE_UPDTE #
-  updateState = (event) => {
+    updateState = (event) => {
     const nameBtn = event.currentTarget.name;
 
     this.setState(prevState => {
-      switch (nameBtn) {
-        case textFeedback[0].feedback:
-          return { good: prevState[nameBtn] + this.step };
-        case textFeedback[1].feedback:
-          return { neutral: prevState[nameBtn] + this.step };
-        case textFeedback[2].feedback:
-          return { bad: prevState[nameBtn] + this.step };
-        default:
-          return;
-      }
+          return { [nameBtn]: prevState[nameBtn] + this.step };
     });
   };
   //#endregion #
