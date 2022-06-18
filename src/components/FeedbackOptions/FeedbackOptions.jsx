@@ -3,42 +3,23 @@ import React from "react";
 import styles from "./FeedbackOptions.module.css";
 
 export class FeedbackOptions extends React.Component {
-    state = {
-        stepGood: 1,
-        stepNeutral: 1,
-        stepBad: 1
-    };
-    extFunc = this.props.options;
+    //extFunc = this.props.options;
     render() {
+        const {options, onLeaveFeedback} = this.props;
         return (
             <ul className={styles.box}>
-                <li className={styles.boxItem}>
-                    <button
-                        className={styles.btn}
-                        type="button"
-                        onClick={() => {
-                            this.extFunc.good(this.state.stepGood);
-                            }}
-                    >good</button>
-                </li>
-                <li className={styles.boxItem}>
-                    <button
-                        className={styles.btn}
-                        type="button"
-                        onClick={() => {
-                            this.extFunc.neutral(this.state.stepNeutral);
-                            }}
-                    >neutral</button>
-                </li>
-                <li className={styles.boxItem}>
-                    <button
-                        className={styles.btn}
-                        type="button"
-                        onClick={() => {
-                            this.extFunc.bad(this.state.stepBad);
-                        }}
-                    >bad</button>
-                </li>
+                {
+                    options.map(item =>
+                        <li className={styles.boxItem} key={item.id}>
+                            <button
+                                className={styles.btn}
+                                name={item.feedback}
+                                type="button"
+                                onClick={onLeaveFeedback}
+                            >{item.feedback}</button>
+                        </li>
+                    )
+                }
             </ul>
         );
     };

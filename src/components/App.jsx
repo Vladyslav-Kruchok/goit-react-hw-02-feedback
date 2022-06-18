@@ -3,6 +3,10 @@
 
 import React from "react";
 
+//#region DATA #
+import textFeedback from "../data/titleFeedback.json"
+//#endregion #
+
 //#region COMPONETS #
 //import componet as a component
 import { FeedbackOptions } from "./FeedbackOptions";
@@ -16,27 +20,22 @@ export class App extends React.Component {
     neutral: 0,
     bad: 0
   };
-
+  step = 1;
   //#region STATE_UPDTE #
-  updateGood = (value) => {
+  updateState = (event) => {
+    const nameBtn = event.currentTarget.name;
+
     this.setState(prevState => {
-      return {
-        good: prevState.good + value
-      };
-    });
-  };
-  updateNeutral = (value) => {
-    this.setState(prevState => {
-      return {
-        neutral: prevState.neutral + value
-      };
-    });
-  };
-  updateBad = (value) => {
-    this.setState(prevState => {
-      return {
-        bad: prevState.bad + value,
-      };
+      switch (nameBtn) {
+        case textFeedback[0].feedback:
+          return { good: prevState[nameBtn] + this.step };
+        case textFeedback[1].feedback:
+          return { neutral: prevState[nameBtn] + this.step };
+        case textFeedback[2].feedback:
+          return { bad: prevState[nameBtn] + this.step };
+        default:
+          return;
+      }
     });
   };
   //#endregion #
@@ -50,16 +49,13 @@ export class App extends React.Component {
     return Math.ceil((this.state.good / this.totalFeedback()) * 100) || 0;
   };
   //#endregion
-  
   render() {
     return (
       <div>
         <Section title="Please leave feedback">
           <FeedbackOptions
-            options={{
-              good: this.updateGood, 
-              neutral: this.updateNeutral,
-              bad: this.updateBad}}
+            options={textFeedback}
+            onLeaveFeedback={this.updateState}
           />
         </Section>
 
