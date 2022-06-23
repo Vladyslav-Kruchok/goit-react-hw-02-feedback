@@ -1,15 +1,11 @@
 import PropTypes from "prop-types";
 import React from "react";
 import styles from "./Statistics.module.css";
-import { Notification } from "../Notification";
+//import { Notification } from "../Notification";
 
 export class Statistics extends React.Component { 
     render() {
         const { good, neutral, bad, total, positivePercentage } = this.props;
-        if (!total)
-        {
-            return <Notification message="There is no feedback"/>;
-        };
         return (
             <ul className={styles.box}>
                 <li className={styles.boxItem}>Good: {good}</li>

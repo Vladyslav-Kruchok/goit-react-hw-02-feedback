@@ -3,8 +3,6 @@
 
 import React from "react";
 
-//#region DATA #
-import textFeedback from "../data/titleFeedback.json"
 //#endregion #
 
 //#region COMPONETS #
@@ -12,6 +10,7 @@ import textFeedback from "../data/titleFeedback.json"
 import { FeedbackOptions } from "./FeedbackOptions";
 import { Statistics } from "./Statistics";
 import { Section } from "./Section";
+import { Notification } from "./Notification";
 //#endregion #
 
 export class App extends React.Component {
@@ -41,23 +40,27 @@ export class App extends React.Component {
   };
   //#endregion
   render() {
+    const resTotal = this.totalFeedback();
     return (
       <div>
         <Section title="Please leave feedback">
           <FeedbackOptions
-            options={textFeedback}
+            options={Object.keys(this.state)}
             onLeaveFeedback={this.updateState}
           />
         </Section>
 
         <Section title="Statistics">
-          <Statistics
-            good={this.state.good}
-            neutral={this.state.neutral}
-            bad={this.state.bad}
-            total={this.totalFeedback()}
-            positivePercentage={this.positivePercentage()}
-          />
+        {resTotal          
+          ? <Statistics
+              good={this.state.good}
+              neutral={this.state.neutral}
+              bad={this.state.bad}
+              total={resTotal}
+              positivePercentage={this.positivePercentage()}
+            />
+          : <Notification message="There is no feedback"/>
+        }
         </Section>
       </div>
     );

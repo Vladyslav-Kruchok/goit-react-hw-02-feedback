@@ -1,22 +1,23 @@
 import PropTypes from "prop-types";
+import { nanoid } from "nanoid";
 import React from "react";
 import styles from "./FeedbackOptions.module.css";
 
 export class FeedbackOptions extends React.Component {
     //extFunc = this.props.options;
     render() {
-        const {options, onLeaveFeedback} = this.props;
+        const { options, onLeaveFeedback } = this.props;
         return (
             <ul className={styles.box}>
                 {
                     options.map(item =>
-                        <li className={styles.boxItem} key={item.id}>
+                        <li className={styles.boxItem} key={nanoid()}>
                             <button
                                 className={styles.btn}
-                                name={item.feedback}
+                                name={item}
                                 type="button"
                                 onClick={onLeaveFeedback}
-                            >{item.feedback}</button>
+                            >{item}</button>
                         </li>
                     )
                 }

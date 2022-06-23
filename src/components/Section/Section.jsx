@@ -14,5 +14,6 @@ export class Section extends React.Component {
 };
 
 Section.protoType = {
-    title: PropTypes.string.isRequired
+    title: PropTypes.string.isRequired,
+    children: PropTypes.node.isRequired
 };
